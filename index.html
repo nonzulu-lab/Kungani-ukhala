@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="zu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>UHenny Adventure</title>
+
+<style>
+
+body{
+margin:0;
+font-family:'Comic Sans MS', sans-serif;
+background:linear-gradient(to bottom,#87CEEB,#fff7c2);
+overflow-x:hidden;
+}
+
+header{
+background:#ff4d88;
+padding:20px;
+text-align:center;
+color:white;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+header h1{
+font-size:55px;
+margin:0;
+}
+
+header p{
+font-size:24px;
+}
+
+.screen{
+display:none;
+padding:20px;
+animation:fade 0.5s;
+}
+
+.active{
+display:block;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+.menu-btn{
+display:block;
+width:90%;
+max-width:700px;
+margin:12px auto;
+padding:20px;
+font-size:28px;
+font-weight:bold;
+border:none;
+border-radius:20px;
+background:#6a5cff;
+color:white;
+cursor:pointer;
+box-shadow:0 5px 10px rgba(0,0,0,0.2);
+}
+
+.menu-btn:hover{
+transform:scale(1.03);
+background:#4f3dff;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:25px;
+max-width:900px;
+margin:20px auto;
+box-shadow:0 8px 15px rgba(0,0,0,0.2);
+}
+
+.big{
+font-size:220px;
+text-align:center;
+}
+
+.story{
+background:#ffe6f2;
+padding:20px;
+border-radius:20px;
+font-size:34px;
+margin-top:15px;
+}
+
+.question{
+font-size:34px;
+margin:20px;
+text-align:center;
+}
+
+.answer-btn{
+display:block;
+width:90%;
+margin:10px auto;
+padding:18px;
+font-size:26px;
+font-weight:bold;
+border:none;
+border-radius:18px;
+background:#ffcf33;
+cursor:pointer;
+}
+
+.answer-btn:hover{
+background:#ffb700;
+}
+
+.nav-btn{
+display:block;
+margin:20px auto;
+padding:15px 30px;
+font-size:22px;
+border:none;
+border-radius:15px;
+background:#222;
+color:white;
+cursor:pointer;
+}
+
+.score{
+text-align:center;
+font-size:30px;
+font-weight:bold;
+color:#ff0066;
+margin-top:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+max-width:700px;
+margin:auto;
+}
+
+.memory{
+height:110px;
+background:#6a5cff;
+border-radius:15px;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:50px;
+color:white;
+cursor:pointer;
+}
+
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:30px;
+font-size:22px;
+}
+
+.music{
+position:fixed;
+top:10px;
+right:10px;
+background:white;
+padding:10px;
+border-radius:15px;
+font-size:20px;
+z-index:1000;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🐔 UHENNY ADVENTURE 🥚</h1>
+
+<p>
+Grade 3 IsiZulu FAL Interactive Adventure
+</p>
+
+</header>
+
+<div class="music">
+🎵 Music On
+</div>
+
+<!-- BACKGROUND MUSIC -->
+
+<audio id="bgMusic" loop>
+<source src="background-music.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+document.body.addEventListener('click', function(){
+
+document.getElementById('bgMusic').play();
+
+}, {once:true});
+
+</script>
+
+<!-- HOME -->
+
+<div id="home" class="screen active">
+
+<button class="menu-btn" onclick="openScreen('story')">
+📖 Full Story
+</button>
+
+<button class="menu-btn" onclick="openScreen('memoryGame')">
+🧠 Memory Game
+</button>
+
+<button class="menu-btn" onclick="openScreen('whoSaid')">
+💬 Who Said It?
+</button>
+
+<button class="menu-btn" onclick="openScreen('storyQuestions')">
+❓ Story Questions
+</button>
+
+<button class="menu-btn" onclick="openScreen('findEggs')">
+🥚 Find the Eggs
+</button>
+
+<button class="menu-btn" onclick="openScreen('punctuation')">
+✏️ Punctuation Game
+</button>
+
+<button class="menu-btn" onclick="openScreen('pastTense')">
+📚 Past Tense Game
+</button>
+
+<button class="menu-btn" onclick="openScreen('spelling')">
+🔤 Spelling Game
+</button>
+
+<button class="menu-btn" onclick="openScreen('sounds')">
+🔊 Animal Sounds
+</button>
+
+<button class="menu-btn" onclick="openScreen('fastTap')">
+⚡ Fast Tap Game
+</button>
+
+</div>
+
+<!-- STORY -->
+
+<div id="story" class="screen">
+
+<div class="card">
+
+<h2 style="text-align:center;font-size:40px;">
+🎬 UHenny Story Video
+</h2>
+
+<video width="100%" controls
+style="
+border-radius:20px;
+border:6px solid #ff4d88;
+">
+
+<source src="henny-story.mp4" type="video/mp4">
+
+</video>
+
+</div>
+
+<div class="card">
+<div class="big">🐔😡</div>
+<div class="story">
+“Gekege gegegege!”
+</div>
+</div>
+
+<div class="card">
+<div class="big">👴</div>
+<div class="story">
+“Kahle wena Henny, kungani ukhala?”
+</div>
+</div>
+
+<div class="card">
+<div class="big">🥚🐔</div>
+<div class="story">
+“Beka amaqanda ami.”
+</div>
+</div>
+
+<div class="card">
+<div class="big">👴😲</div>
+<div class="story">
+“Habe! amaqanda ami!”
+</div>
+</div>
+
+<div class="card">
+<div class="big">👴🐄</div>
+<div class="story">
+“Ngicela usizo, dada lami! Ngicela usizo, nkomo yami!”
+</div>
+</div>
+
+<div class="card">
+<div class="big">🐔😭</div>
+<div class="story">
+“Izingane zami! Zafa izingane zami, bangani. Hawu! Sizani.”
+</div>
+</div>
+
+<div class="card">
+<div class="big">👴😔</div>
+<div class="story">
+“Ngiyaxolisa, Henny.”
+</div>
+</div>
+
+<div class="card">
+<div class="big">🐔😊</div>
+<div class="story">
+“Kulungile mkhulu, Ngiyakuxolela.”
+</div>
+</div>
+
+<button class="nav-btn" onclick="goHome()">
+🏠 Home
+</button>
+
+</div>
+
+<!-- MEMORY GAME -->
+
+<div id="memoryGame" class="screen">
+
+<div class="card">
+
+<h2 class="question">
+🧠 Memory Game
+</h2>
+
+<div class="grid" id="memoryGrid"></div>
+
+<div class="score" id="memoryScore">
+0
+</div>
+
+<button class="nav-btn" onclick="setupMemory()">
+🔄 Restart
+</button>
+
+<button class="nav-btn" onclick="goHome()">
+🏠 Home
+</button>
+
+</div>
+
+</div>
+
+<!-- WHO SAID -->
+
+<div id="whoSaid" class="screen">
+
+<div class="card">
+
+<div id="whoQuestion" class="question"></div>
+
+<div id="whoAnswers"></div>
+
+<div class="score" id="whoScore">
+0 / 10
+</div>
+
+<button class="nav-btn" onclick="goHome()">
+🏠 Home
+</button>
+
+</div>
+
+</div>
+
+<!-- STORY QUESTIONS -->
+
+<div id="storyQuestions" class="screen">
+
+<div class="card">
+
+<div id="storyQ" class="question"></div>
+
+<div id="storyAns"></div>
+
+<div class="score" id="storyScore">
+0 / 10
+</div>
+
+<button class="nav-btn" onclick="goHome()">
+🏠 Home
+</button>
+
+</div>
+
+</div>
+
+<!-- FIND EGGS -->
+
+<div id="findEggs" class="screen">
+
+<div class="card">
+
+<h2 class="question">
+🥚 Find The Eggs
+</h2>
+
+<div class="big">
+🥚 🐄 🥚 🐖 🥚 🐔 🐎 🐐
+</div>
+
+<button class="answer-btn" onclick="findEgg()">
+🥚 Find Egg
+</button>
+
+<div class="score" id="eggScore">
+0
+</div>
+
+<button class="nav-btn" onclick="goHome()">
+🏠 Home
+</button>
+
+</div>
+
+</div>
+
+<!-- PUNCTUATION -->
+
+<div id="punctuation" class="screen">
+
+<div class="card">
+
+<div id="puncQ" class="question"></div>
+
+<div id="puncAns"></div>
+
+<div class="score" id="puncScore">
+0 / 10
+</div>
+
+<button class="nav-btn" onclick="goHome()">
+🏠 Home
+</button>
+
+</div>
+
+</div>
+
+<!-- PAST TENSE -->
+
+<div id="pastTense" class="screen">
+
+<div class="card">
+
+<div id="pastQ" class="question"></div>
+
+<div id="pastAns"></div>
+
+<div class="score" id="pastScore">
+0 / 10
+</div>
+
+<button class="nav-btn" onclick="goHome()">
+🏠 Home
+</button>
+
+</div>
+
+</div>
+
+<!-- SPELLING -->
+
+<div id="spelling" class="screen">
+
+<div class="card">
+
+<div id="spellQ" class="question"></div>
+
+<input id="spellInput"
+style="
+font-size:30px;
+padding:15px;
+width:80%;
+display:block;
+margin:auto;
+border-radius:15px;
+">
+
+<button class="answer-btn" onclick="checkSpell()">
+✔️ Check
+</button>
+
+<div class="score" id="spellScore">
+0 / 10
+</div>
+
+<button class="nav-btn" onclick="goHome()">
+🏠 Home
+</button>
+
+</div>
+
+</div>
+
+<!-- SOUNDS -->
+
+<div id="sounds" class="screen">
+
+<div class="card">
+
+<div id="soundQ" class="question"></div>
+
+<div id="soundAns"></div>
+
+<div class="score" id="soundScore">
+0 / 10
+</div>
+
+<button class="nav-btn" onclick="goHome()">
+🏠 Home
+</button>
+
+</div>
+
+</div>
+
+<!-- FAST TAP -->
+
+<div id="fastTap" class="screen">
+
+<div class="card">
+
+<h2 class="question">
+⚡ Tap UHenny!
+</h2>
+
+<div class="big">
+
+<span onclick="fastCorrect()">🐔</span>
+
+<span onclick="fastWrong()">🐄</span>
+
+<span onclick="fastWrong()">🐖</span>
+
+<span onclick="fastWrong()">🐎</span>
+
+</div>
+
+<div class="score" id="fastScore">
+0
+</div>
+
+<button class="nav-btn" onclick="goHome()">
+🏠 Home
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+//////////////////////////////////////////////////////
+// OPEN SCREEN
+//////////////////////////////////////////////////////
+
+function openScreen(id){
+
+document.querySelectorAll('.screen').forEach(screen=>{
+
+screen.classList.remove('active');
+
+});
+
+document.getElementById(id).classList.add('active');
+
+}
+
+function goHome(){
+
+openScreen('home');
+
+}
+
+//////////////////////////////////////////////////////
+// ALERTS
+//////////////////////////////////////////////////////
+
+function correct(){
+
+alert("⭐ Kuhle kakhulu!");
+
+}
+
+function wrong(){
+
+alert("❌ Zama futhi!");
+
+}
+
+//////////////////////////////////////////////////////
+// MEMORY GAME
+//////////////////////////////////////////////////////
+
+let emojis = [
+
+'🐔','🐔',
+'🐄','🐄',
+'🐖','🐖',
+'🥚','🥚',
+'🐎','🐎',
+'🐐','🐐',
+'👴','👴',
+'👵','👵'
+
+];
+
+let flipped = [];
+let matches = 0;
+
+function setupMemory(){
+
+matches = 0;
+
+flipped = [];
+
+document.getElementById('memoryScore').innerText =
+"0";
+
+emojis.sort(()=>0.5-Math.random());
+
+let grid =
+document.getElementById('memoryGrid');
+
+grid.innerHTML = '';
+
+emojis.forEach((emoji)=>{
+
+let card =
+document.createElement('div');
+
+card.className = 'memory';
+
+card.innerText = '❓';
+
+card.dataset.emoji = emoji;
+
+card.onclick = ()=>flipCard(card);
+
+grid.appendChild(card);
+
+});
+
+}
+
+function flipCard(card){
+
+if(card.innerText !== '❓') return;
+
+card.innerText = card.dataset.emoji;
+
+flipped.push(card);
+
+if(flipped.length === 2){
+
+if(flipped[0].dataset.emoji ===
+flipped[1].dataset.emoji){
+
+matches++;
+
+document.getElementById('memoryScore')
+.innerText = matches;
+
+correct();
+
+flipped = [];
+
+}else{
+
+wrong();
+
+setTimeout(()=>{
+
+flipped.forEach(c=>{
+
+c.innerText='❓';
+
+});
+
+flipped=[];
+
+},800);
+
+}
+
+}
+
+}
+
+setupMemory();
+
+//////////////////////////////////////////////////////
+// WHO SAID
+//////////////////////////////////////////////////////
+
+const whoData = [
+
+["Ngiyaxolisa, Henny.","Umkhulu"],
+["Gekege gegegege!","UHenny"],
+["Ngiyakuxolela.","UHenny"],
+["Kahle wena Henny?","Umkhulu"],
+["Ngicela usizo.","Umkhulu"],
+["Sizani!","UHenny"],
+["Beka amaqanda ami.","UHenny"],
+["Habe! amaqanda ami!","Umkhulu"],
+["Ngiyajabula.","UHenny"],
+["Siyabonga.","Umkhulu"]
+
+];
+
+let whoIndex = 0;
+let whoScore = 0;
+
+function loadWho(){
+
+if(whoIndex >= whoData.length){
+
+alert("🏆 Game Complete!");
+
+return;
+
+}
+
+let q = whoData[whoIndex];
+
+document.getElementById('whoQuestion')
+.innerText = q[0];
+
+document.getElementById('whoScore')
+.innerText = whoScore + " / 10";
+
+let answers =
+document.getElementById('whoAnswers');
+
+answers.innerHTML = '';
+
+["Umkhulu","UHenny","Ugogo"]
+.forEach(a=>{
+
+let btn =
+document.createElement('button');
+
+btn.className='answer-btn';
+
+btn.innerText=a;
+
+btn.onclick=()=>{
+
+if(a === q[1]){
+
+whoScore++;
+
+correct();
+
+}else{
+
+wrong();
+
+}
+
+whoIndex++;
+
+loadWho();
+
+};
+
+answers.appendChild(btn);
+
+});
+
+}
+
+loadWho();
+
+//////////////////////////////////////////////////////
+// STORY QUESTIONS
+//////////////////////////////////////////////////////
+
+const storyQuestions = [
+
+["Ubani othukuthele?","UHenny"],
+["UHenny wayefunani?","Amaqanda"],
+["Ubani owacela usizo?","Umkhulu"],
+["Kwenzekeni kumaqanda?","Afa"],
+["Ingabe umkhulu waxolisa?","Yebo"],
+["UHenny wazizwa kanjani?","Uthukuthele"],
+["Ubani owakhala?","UHenny"],
+["Ubani waxolela umkhulu?","UHenny"],
+["Yayiyini indaba?","Amaqanda"],
+["Ubani owabuza uHenny?","Umkhulu"]
+
+];
+
+let storyIndex = 0;
+let storyScore = 0;
+
+function loadStoryQuestions(){
+
+if(storyIndex >= storyQuestions.length){
+
+alert("🎉 Excellent!");
+
+return;
+
+}
+
+let q = storyQuestions[storyIndex];
+
+document.getElementById('storyQ')
+.innerText = q[0];
+
+document.getElementById('storyScore')
+.innerText = storyScore + " / 10";
+
+let answers =
+document.getElementById('storyAns');
+
+answers.innerHTML='';
+
+[
+"UHenny",
+"Umkhulu",
+"Amaqanda",
+"Yebo",
+"Afa",
+"Uthukuthele"
+
+].forEach(a=>{
+
+let btn =
+document.createElement('button');
+
+btn.className='answer-btn';
+
+btn.innerText=a;
+
+btn.onclick=()=>{
+
+if(a===q[1]){
+
+storyScore++;
+
+correct();
+
+}else{
+
+wrong();
+
+}
+
+storyIndex++;
+
+loadStoryQuestions();
+
+};
+
+answers.appendChild(btn);
+
+});
+
+}
+
+loadStoryQuestions();
+
+//////////////////////////////////////////////////////
+// FIND EGGS
+//////////////////////////////////////////////////////
+
+let eggScore = 0;
+
+function findEgg(){
+
+eggScore++;
+
+document.getElementById('eggScore')
+.innerText = eggScore;
+
+correct();
+
+}
+
+//////////////////////////////////////////////////////
+// PUNCTUATION
+//////////////////////////////////////////////////////
+
+const puncData = [
+
+["Ingulube injani","?"],
+["Ubonani ugogo","?"],
+["UHenny uthukuthele","."],
+["Ngubani lo","?"],
+["Ngiyaxolisa Henny","."],
+["Sizani","!"],
+["Hawu","!"],
+["Beka amaqanda ami","."],
+["Ngiyakuxolela","."],
+["Kahle wena Henny","?"]
+
+];
+
+let puncIndex = 0;
+let puncScore = 0;
+
+function loadPunctuation(){
+
+if(puncIndex >= puncData.length){
+
+alert("✏️ Punctuation Complete!");
+
+return;
+
+}
+
+let q = puncData[puncIndex];
+
+document.getElementById('puncQ')
+.innerText = q[0];
+
+document.getElementById('puncScore')
+.innerText = puncScore + " / 10";
+
+let answers =
+document.getElementById('puncAns');
+
+answers.innerHTML='';
+
+["?",".","!"].forEach(a=>{
+
+let btn =
+document.createElement('button');
+
+btn.className='answer-btn';
+
+btn.innerText=a;
+
+btn.onclick=()=>{
+
+if(a===q[1]){
+
+puncScore++;
+
+correct();
+
+}else{
+
+wrong();
+
+}
+
+puncIndex++;
+
+loadPunctuation();
+
+};
+
+answers.appendChild(btn);
+
+});
+
+}
+
+loadPunctuation();
+
+//////////////////////////////////////////////////////
+// PAST TENSE
+//////////////////////////////////////////////////////
+
+const pastData = [
+
+["Ngisenga inkomo","Ngasenga inkomo"],
+["Ngibona ihhashi","Ngabona ihhashi"],
+["Sibala izimbuzi","Sabala izimbuzi"],
+["Ngidla amaqanda","Ngadla amaqanda"],
+["Ngigijima","Ngagijima"],
+["Ngicula","Ngacula"],
+["Ngibhala","Ngabhala"],
+["Ngifunda","Ngafunda"],
+["Ngikhala","Ngakhala"],
+["Ngiyadlala","Ngadlala"]
+
+];
+
+let pastIndex = 0;
+let pastScore = 0;
+
+function loadPast(){
+
+if(pastIndex >= pastData.length){
+
+alert("📚 Past Tense Complete!");
+
+return;
+
+}
+
+let q = pastData[pastIndex];
+
+document.getElementById('pastQ')
+.innerText = q[0];
+
+document.getElementById('pastScore')
+.innerText = pastScore + " / 10";
+
+let answers =
+document.getElementById('pastAns');
+
+answers.innerHTML='';
+
+[
+q[1],
+"Ngibona",
+"Ngisenga"
+
+].forEach(a=>{
+
+let btn =
+document.createElement('button');
+
+btn.className='answer-btn';
+
+btn.innerText=a;
+
+btn.onclick=()=>{
+
+if(a===q[1]){
+
+pastScore++;
+
+correct();
+
+}else{
+
+wrong();
+
+}
+
+pastIndex++;
+
+loadPast();
+
+};
+
+answers.appendChild(btn);
+
+});
+
+}
+
+loadPast();
+
+//////////////////////////////////////////////////////
+// SPELLING
+//////////////////////////////////////////////////////
+
+const spellData = [
+
+["I _ K _ K _ U","inkukhu"],
+["I N K O _ O","inkomo"],
+["I H H A _ H I","ihhashi"],
+["I N G U L _ B E","ingulube"],
+["I M B U _ I","imbuzi"],
+["A M A Q A _ D A","amaqanda"],
+["U M K H _ U","umkhulu"],
+["U G O _ O","ugogo"],
+["U J A B U _ E","ujabule"],
+["U T H U K U T H E _ E","uthukuthele"]
+
+];
+
+let spellIndex = 0;
+let spellScore = 0;
+
+function loadSpell(){
+
+document.getElementById('spellQ')
+.innerText =
+spellData[spellIndex][0];
+
+document.getElementById('spellInput')
+.value='';
+
+}
+
+function checkSpell(){
+
+let val =
+document.getElementById('spellInput')
+.value.toLowerCase();
+
+if(val===spellData[spellIndex][1]){
+
+spellScore++;
+
+correct();
+
+}else{
+
+wrong();
+
+}
+
+spellIndex++;
+
+document.getElementById('spellScore')
+.innerText =
+spellScore + " / 10";
+
+if(spellIndex < spellData.length){
+
+loadSpell();
+
+}else{
+
+alert("🏆 Spelling Champion!");
+
+}
+
+}
+
+loadSpell();
+
+//////////////////////////////////////////////////////
+// SOUNDS
+//////////////////////////////////////////////////////
+
+const soundData = [
+
+["Moo","🐄 inkomo"],
+["Oink","🐖 ingulube"],
+["Cluck","🐔 inkukhu"],
+["Neigh","🐎 ihhashi"],
+["Maa","🐐 imbuzi"],
+["Moo","🐄 inkomo"],
+["Cluck","🐔 inkukhu"],
+["Neigh","🐎 ihhashi"],
+["Oink","🐖 ingulube"],
+["Maa","🐐 imbuzi"]
+
+];
+
+let soundIndex = 0;
+let soundScore = 0;
+
+function loadSounds(){
+
+if(soundIndex >= soundData.length){
+
+alert("🔊 Sounds Complete!");
+
+return;
+
+}
+
+let q = soundData[soundIndex];
+
+document.getElementById('soundQ')
+.innerText = q[0];
+
+document.getElementById('soundScore')
+.innerText = soundScore + " / 10";
+
+let answers =
+document.getElementById('soundAns');
+
+answers.innerHTML='';
+
+[
+"🐄 inkomo",
+"🐖 ingulube",
+"🐔 inkukhu",
+"🐎 ihhashi",
+"🐐 imbuzi"
+
+].forEach(a=>{
+
+let btn =
+document.createElement('button');
+
+btn.className='answer-btn';
+
+btn.innerText=a;
+
+btn.onclick=()=>{
+
+if(a===q[1]){
+
+soundScore++;
+
+correct();
+
+}else{
+
+wrong();
+
+}
+
+soundIndex++;
+
+loadSounds();
+
+};
+
+answers.appendChild(btn);
+
+});
+
+}
+
+loadSounds();
+
+//////////////////////////////////////////////////////
+// FAST TAP
+//////////////////////////////////////////////////////
+
+let fastScore = 0;
+
+function fastCorrect(){
+
+fastScore++;
+
+document.getElementById('fastScore')
+.innerText = fastScore;
+
+correct();
+
+if(fastScore >= 10){
+
+alert("⚡ Fast Tap Champion!");
+
+}
+
+}
+
+function fastWrong(){
+
+wrong();
+
+}
+
+</script>
+
+<footer>
+
+Grade 3 IsiZulu FAL Interactive Adventure<br>
+
+Made for young learners
+
+</footer>
+
+</body>
+</html>
